@@ -1,0 +1,78 @@
+<script src="https://github.com/chartjs/Chart.js/releases/download/v2.7.3/Chart.bundle.min.js"> </script>
+<script src="https://momentjs.com/downloads/moment.js"> </script>
+
+<form action="/" method="get">
+    <button type="submit" value="Submit">Back to Menu</button>
+</form>
+
+<h3>Welcome, on this page, you can view, update and delete your metrics</h3>
+<h4>Add or modify a metric</h4>
+<form action="/metrics/new" method="post">
+    <div class="form-group">
+      <label for="form_timestampt">Timestamp</label>
+      <input id="form_timestamp" type="date" name="timestamp" />
+    </div>
+    <div class="form-group">
+      <label for="form_value">Value</label>
+      <input id="form_value" type="number" name="value" />
+    </div>
+    <button type="submit" value="Submit">Save Metric</button>
+  </form>
+<h4> Your Metrics
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Value</th>
+    <th>Delete</th>
+  </tr>
+  <% if (metrics) { %>
+  <% metrics.forEach( m=> { %>
+  <tr>
+    <form action="/metrics/delete" method="post">
+    <td><input type="text" name="timestamp" value="<%= m.timestamp %>" ></td>
+    <td><input type="text" name="value" value="<%= m.value %>" ></td>
+    <td><button type="submit" value="Submit">Delete</button></td>
+    </form>
+  </tr>
+  <% }) %>
+  <% } %>
+</table>
+
+<canvas id="myChart" width="400" height="80"></canvas>
+</div>
+
+</div>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+
+    var metrics = <%- JSON.stringify(metrics) %>
+    var ts=[]
+    var values=[]
+    metrics.forEach(metrics=>{
+        metrics.timestamp = moment(metrics.timestamp).format('LL');
+    })
+    metrics.forEach(metrics=>{
+        ts.push(metrics.timestamp)
+        values.push(metrics.value)
+    })
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ts,
+            datasets: [{
+                label: '',
+                data: values,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+</script>

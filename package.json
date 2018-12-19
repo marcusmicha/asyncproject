@@ -1,0 +1,52 @@
+{
+  "name": "asynchronoustech",
+  "version": "1.0.0",
+  "description": "Cette application permettra à tout uilisateur d'afficher un nom quelconque. * **/** Affiche la description de l'application * **/hello?name=`un_nom`** affiche un nom. Une description détaillée sera affichée si le nom `Michael` est entré * Toute autre route déclanchera une erreur",
+  "main": "src/server.ts",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/express-session": "^1.15.11",
+    "@types/morgan": "^1.7.35",
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
+    "del": "^3.0.0",
+    "ejs": "^2.6.1",
+    "encoding-down": "^5.0.4",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "level": "^4.0.0",
+    "level-session-store": "^2.1.0",
+    "level-ws": "^1.0.0",
+    "leveldown": "^4.0.1",
+    "levelup": "^3.1.1",
+    "morgan": "^1.9.1",
+    "typescript": "^3.1.6"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/levelup": "^3.1.0",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1"
+  },
+  "scripts": {
+    "populate": "./node_modules/.bin/ts-node bin/populate.ts",
+    "test": "./node_modules/.bin/mocha -r ts-node/register src/**/*.test.ts",
+    "build": "./node_modules/.bin/tsc -p tsconfig.json",
+    "start": "./node_modules/.bin/ts-node src/server.ts",
+    "dev": "./node_modules/.bin/nodemon "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcusmicha/asynchronoustech.git"
+  },
+  "author": "Micha Marcus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcusmicha/asynchronoustech/issues"
+  },
+  "homepage": "https://github.com/marcusmicha/asynchronoustech#readme"
+}
